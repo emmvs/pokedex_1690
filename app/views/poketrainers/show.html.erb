@@ -1,0 +1,36 @@
+<div class="container mt-4 mb-4">
+  <p style="color: green"><%= notice %></p>
+
+  <%= render @poketrainer %>
+
+  <%#= link_to 'Add a new pokemon for Kenta', new_pokemon_path %>
+
+  <h3>Add new pokemon for <%= @poketrainer.name %></h3>
+
+  <div class="container">
+    <%= simple_form_for [@poketrainer, @pokemon] do |f| %>
+    <%= f.input :name %>
+    <%= f.input :power %>
+    <%= f.button :submit %>
+  <% end %>
+  </div>
+
+  <h3>Look at all of the pokemons of <%= @poketrainer.name %></h3>
+  <% @poketrainer.pokemons.each do |pokemon| %>
+      <!-- /poketrainers/:poketrainer_id/pokemons/:id      -->
+      <%= link_to poketrainer_pokemon_path(pokemon.poketrainer.id, pokemon.id) do %>
+      <%#= link_to poketrainer_pokemon_path(poketrainer.id, pokemon.id) do %>
+        <div class="card m-4 p-3">
+          <%= pokemon.name %>
+        </div>
+      <% end %>
+  <% end %>
+
+  <div>
+    <%= link_to "Edit this poketrainer", edit_poketrainer_path(@poketrainer), class: 'btn' %> |
+    <%= link_to "Back to poketrainers", poketrainers_path, class: 'btn' %>
+
+    <%= button_to "Destroy this poketrainer", @poketrainer, method: :delete, class: 'btn btn-outline-primary' %>
+  </div>
+
+</div>

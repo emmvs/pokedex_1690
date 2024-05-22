@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Poketrainers</h1>
+
+<div id="poketrainers">
+  <% @poketrainers.each do |poketrainer| %>
+    <%= render poketrainer %>
+    <p>
+      <%= link_to "Show this poketrainer", poketrainer %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New poketrainer", new_poketrainer_path %>
